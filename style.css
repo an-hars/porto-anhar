@@ -1,0 +1,121 @@
+/* Mengatur font ke Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* Variabel CSS untuk skema warna ungu gelap */
+:root {
+    --primary-purple: #a855f7;
+    --dark-bg: #0d0615;
+    --card-bg: #1a0f28;
+    --border-color: #3e2f5b;
+    --link-color: #d1d5db; /* gray-300 */
+    --link-hover-color: #c084fc; /* purple-400 */
+}
+
+/* Gaya Body & Font */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: #f0f0f0;
+    min-height: 100vh;
+    /* Default padding bottom untuk desktop */
+    padding-bottom: 0; 
+    scroll-behavior: smooth;
+}
+
+/* --- Animasi Ketik (Typing Animation) --- */
+.typing-text-container {
+    min-height: 40px; /* Memastikan ada ruang saat teks dihapus */
+    display: inline-block;
+}
+
+.typed-text::after {
+    content: '|';
+    display: inline;
+    animation: blink 0.7s infinite;
+    font-weight: 600;
+    color: var(--primary-purple);
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* --- Navbar Desktop (Top) --- */
+.navbar-desktop {
+    /* MEMASTIKAN NAVBAR DESKTOP SELALU TAMPIL DI LAYAR LEBAR */
+    display: flex; 
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* EFEK HOVER PADA TAUTAN NAVIGASI DESKTOP */
+.navbar-desktop a {
+    color: var(--link-color); /* Warna link default */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.navbar-desktop a:hover {
+    color: var(--link-hover-color); /* Warna saat hover (ungu) */
+}
+
+/* --- Navbar Mobile (Bottom) --- */
+/* Default: disembunyikan */
+.navbar-mobile {
+    /* MEMASTIKAN NAVBAR MOBILE SELALU TERSEMBUNYI SECARA DEFAULT */
+    display: none; 
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    /* EFEK BARU: Tambahkan efek bayangan */
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5); 
+}
+
+/* MEDIA QUERY: TAMPILAN DESKTOP (Layar lebih besar dari 1023px) */
+@media (min-width: 1024px) {
+    .navbar-mobile {
+        /* ATURAN TEGAS: PASTIKAN NAVBAR MOBILE TERSEMBUNYI DI DESKTOP */
+        display: none !important;
+    }
+}
+
+/* MEDIA QUERY: TAMPILAN SELULER (Layar lebih kecil dari 1024px) */
+@media (max-width: 1023px) { 
+    /* Sembunyikan navbar atas (Desktop) */
+    .navbar-desktop {
+        display: none; 
+    }
+
+    /* Tampilkan navbar bawah (Mobile) */
+    .navbar-mobile {
+        display: flex; /* HANYA tampilkan di mobile */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 8px 0;
+        /* EFEK LATAR BELAKANG BURAM */
+        background-color: var(--card-bg);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Tambahkan padding di bagian bawah body agar konten tidak tertutup navbar mobile */
+    body {
+        padding-bottom: 65px; 
+    }
+}
+
+/* Gaya Card Proyek/Pengalaman */
+.project-card, .work-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 0.75rem; /* rounded-xl */
+}
+.project-card:hover, .work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(168, 85, 247, 0.5); 
+}
